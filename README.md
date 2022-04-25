@@ -59,11 +59,17 @@ By Default web management console is enabled. To disable add env variable:
 
 #### Upgrade Apex Up to v5.*
 
-    docker run -it --rm --volumes-from ${DB_CONTAINER_NAME} --link ${DB_CONTAINER_NAME}:${HOSTNAME/USERNAME} -e PASS=YourSYSPASS quay.io/maksymbilenko/docker-oracle-apex:5.1.2 install
+Start oracle database with volume
+
+    docker run -d -p 8080:8080 -p 1521:1521 -v /u01/app/oracle --name oracle ashimjk/oracle-12c
+
+Start Apex Upgrade
+
+    docker run -it --rm --volumes-from ${DB_CONTAINER_NAME} --link ${DB_CONTAINER_NAME}:${HOSTNAME/USERNAME} -e PASS=YourSYSPASS ashimjk/oracle-apex install
 
 Sample
 
-    docker run -it --rm --volumes-from oracle --link oracle:oracle -e PASS=oracle quay.io/maksymbilenko/docker-oracle-apex:5.1.2 install
+    docker run -it --rm --volumes-from oracle --link oracle:oracle -e PASS=oracle ashimjk/oracle-apex install
 
 ### Start with additional initial scripts
 
@@ -88,7 +94,7 @@ Connect to `sqlplus`
 
 ### Reference
 
-- [Docker Oracle Apex](https://github.com/MaksymBilenko/docker-oracle-apex)
+- [Docker Oracle Apex](https://github.com/ashimjk/docker-oracle-apex)
 
 ### Many Thanks To
 
