@@ -59,7 +59,7 @@ By Default web management console is enabled. To disable add env variable:
 
 #### Upgrade Apex Up to v5.*
 
-    docker run -it --rm --volumes-from ${DB_CONTAINER_NAME} --link ${DB_CONTAINER_NAME}:oracle-database -e PASS=YourSYSPASS sath89/apex install
+    docker run -it --rm --volumes-from ${DB_CONTAINER_NAME} --link ${DB_CONTAINER_NAME}:${HOSTNAME/USERNAME} -e PASS=YourSYSPASS quay.io/maksymbilenko/docker-oracle-apex:5.1.2 install
 
 Sample
 
